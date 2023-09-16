@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+  <style>
+    .background {
+      background-image: url("https://img.freepik.com/free-vector/business-team-composition-with-group-people-united-by-one-common-idea_1284-52843.jpg?w=740&t=st=1694847824~exp=1694848424~hmac=7ac8dc05f5168b3a2c7b708654a9a396f4b462169813608eed679ec3d1b4898e")
+    }
+
+    .text1 {
+      font-family: 'Lobster', cursive;
+      text-align: center;
+      
+    }
+
+    .text2 {
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 3px;
+    }
+
+    .row {
+      text-align: center;
+    }
+    .btn{
+      align-items: center;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body class="background">
+  <h1 class="text1">Customer Classification</h1>
+  <form method="POST" class="text2">
+    {%csrf_token %}
+    <div class="row">
+    <table>
+      <tr>
+        <td>
+          Enter region:
+        </td>
+        <td>
+          <input type=" text" class="form-control form-control-lg" name="txtregion" >
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Enter tenure:
+        </td>
+        <td>
+          <input type=" text" class="form-control form-control-lg" name="txttenure">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Enter age:
+        </td>
+        <td>
+          <input type=" text" class="form-control form-control-lg" name="txtage">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Enter income :
+        </td>
+        <td>
+          <input type=" text" class="form-control form-control-lg" name="txtincome">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Enter marital:
+        </td>
+        <td>
+          <input type=" text" class="form-control form-control-lg" name="txtmar">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Enter address:
+        </td>
+        <td>
+          <input type=" text" class="form-control form-control-lg" name="txtadd">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Enter ed:
+        </td>
+        <td>
+          <input type=" text" class="form-control form-control-lg" name="txted">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Enter employ:
+        </td>
+        <td>
+          <input type=" text" class="form-control form-control-lg" name="txtemploy">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          Enter retire:
+        </td>
+        <td>
+          <input type=" text" class="form-control form-control-lg" name="txtretire">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Enter gender:
+        </td>
+        <td>
+          <input type=" text" class="form-control form-control-lg" name="txtgender">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Enter reside:
+        </td>
+        <td>
+          <input type=" text" class="form-control form-control-lg " name="txtreside">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="submit" class="btn btn-dark btn-lg" name="submit" >Predict</button>
+        </td>
+      </tr>
+    </table>
+    <h2>Result:{{prediction}}</h2>
+  
+  </div>
+  </form>
+</body>
+
+</html>
