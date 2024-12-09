@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+import pandas as pd
 def DecisionTree(Age,gender,Bmi,BloodPressure,FBS,HbA1c,FamilyHistoryofDiabetes,Smoking,Diet,Exercise):
-   import pandas as pd
+   
    path="C:\\Users\\Sriram\\Downloads\\41_EasiestDiabetesClassification\\DiabetesClassification.csv"
    data=pd.read_csv(path)
    from sklearn.preprocessing import LabelEncoder
@@ -15,8 +15,9 @@ def DecisionTree(Age,gender,Bmi,BloodPressure,FBS,HbA1c,FamilyHistoryofDiabetes,
    data['Diagnosis']=le.fit_transform(data[['Diagnosis']])
    data['Family History of Diabetes']=le.fit_transform(data[['Family History of Diabetes']])
    data['HbA1c']=data['HbA1c'].astype(int)
-   inputs=data.drop(['Diagnosis'],'columns')
-   output=data.drop(['Age','Gender','BMI', 'Blood Pressure','FBS','HbA1c','Family History of Diabetes','Smoking','Diet','Exercise'],'columns')
+   inputs = data.drop(['Diagnosis'], axis=1)
+   output = data[['Diagnosis']]
+
    import sklearn
    from sklearn.model_selection import train_test_split
    x_train,x_test,y_train,y_test=train_test_split(inputs,output,test_size=0.2)

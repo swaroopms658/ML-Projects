@@ -9,8 +9,9 @@ def svm(region,tenure,age,income,marital,address,ed,employ,retire,gender,reside)
     from sklearn.preprocessing import LabelEncoder
     le=LabelEncoder()
     data['custcat']=le.fit_transform(data[['custcat']])
-    inputs=data.drop(['custcat'],'columns')
-    output=data.drop(['region','tenure','age','income','marital','address','ed','employ','retire','gender','reside'],'columns')
+    inputs = data.drop(['custcat'], axis=1)
+    output = data.drop(['region', 'tenure', 'age', 'income', 'marital', 'address', 'ed', 'employ', 'retire', 'gender', 'reside'], axis=1)
+
     from sklearn.model_selection import train_test_split
     x_train,x_test,y_train,y_test=train_test_split(inputs,output,test_size=0.2)
     from sklearn.svm import SVC
