@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-import pandas as pd
-from sklearn.preprocessing import LabelEncoder, StandardScaler
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.svm import SVC
-from sklearn.metrics import accuracy_score
 
 def svm(region, tenure, age, income, marital, address, ed, employ, retire, gender, reside):
+    import pandas as pd
+    from sklearn.preprocessing import LabelEncoder
+    from sklearn.model_selection import train_test_split
+    from sklearn.svm import SVC
+
     # Load data
     path = "C:\\Users\\Sriram\\Downloads\\40_customerClassification\\Telecust1.csv"
     data = pd.read_csv(path)
@@ -17,36 +17,18 @@ def svm(region, tenure, age, income, marital, address, ed, employ, retire, gende
     inputs = data.drop(['custcat'], axis=1)
     output = data['custcat']
 
-    # Feature scaling
-    scaler = StandardScaler()
-    inputs_scaled = scaler.fit_transform(inputs)
-
     # Train-test split
-    x_train, x_test, y_train, y_test = train_test_split(inputs_scaled, output, test_size=0.2, random_state=42)
-
-    # Hyperparameter tuning using GridSearchCV
-    param_grid = {
-        'C': [0.1, 1, 10, 100],
-        'kernel': ['linear', 'rbf', 'poly'],
-        'gamma': ['scale', 'auto']
-    }
-    grid_search = GridSearchCV(SVC(), param_grid, cv=5, scoring='accuracy', verbose=1)
-    grid_search.fit(x_train, y_train)
-
-    # Best model
-    best_model = grid_search.best_estimator_
+    x_train, x_test, y_train, y_test = train_test_split(inputs, output, test_size=0.2, random_state=42)
 
     # Train the model
-    best_model.fit(x_train, y_train)
+    model = SVC()
+    model.fit(x_train, y_train)
 
-    # Test accuracy
-    y_pred = best_model.predict(x_test)
-    accuracy = accuracy_score(y_test, y_pred)
+    # Calculate model accuracy
+    accuracy = model.score(x_test, y_test)  # Accuracy on test data
 
-    # Prediction for user input
-    user_input = scaler.transform([[region, tenure, age, income, marital, address, ed, employ, retire, gender, reside]])
-    res = best_model.predict(user_input)
-
+    # Prediction
+    res = model.predict([[region, tenure, age, income, marital, address, ed, employ, retire, gender, reside]])
     category = ['Customer is of category A', 'Customer is of category B',
                 'Customer is of category C', 'Customer is of category D']
     
