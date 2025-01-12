@@ -22,4 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("Classifier/",Classifier,name='dtc'),
     path("svm/",classification,name='svm'),
+
 ]
